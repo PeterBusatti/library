@@ -1,0 +1,38 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+}
+
+#table-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-start;
+    width: 1310px;
+    border: solid red 2px;
+}
+
+.card {
+    border: solid black 2px;
+    height: 250px;
+    width: 250px;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: rgb(223, 196, 196);
+}
+
+.card p {
+    color: black;
+}
+
+.read {
+    background-color: rgb(154, 197, 154);
+}
+
