@@ -30,9 +30,15 @@ body {
 
 .card p {
     color: black;
+    padding-left: 10px;
 }
 
 .read {
     background-color: rgb(154, 197, 154);
+}
+
+.switch {
+    align-self: flex-end;
+    margin-right: 10px;
 }
 

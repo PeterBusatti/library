@@ -2,13 +2,15 @@ const tableContainer = document.getElementById("table-container");
 
 let myLibrary = [];
 
-function Book(name, author, pages, read) {
+function Book(name, author, pages, genre, read) {
     this.name = name;
     this.author = author;
     this.pages = pages;
+    this.genre = genre
     this.read = read;
 }
-const mistborn = new Book("Mistborn", "Brandon Sanderson", 544, true);
+ 
+const mistborn = new Book("Mistborn", "Brandon Sanderson", 544, "Fantasy", false);
 
 function addBookToLibrary(book) {
     myLibrary.push(book);
@@ -16,32 +18,48 @@ function addBookToLibrary(book) {
 
 addBookToLibrary(mistborn);
 
-function addCard() {
-    myLibrary.forEach(item => {
-        let card = document.createElement("div");
-        card.classList.add("card");
-    
-        let title = document.createElement("p");
-        let author = document.createElement("p");
-        let pages = document.createElement("p");
-        let read = document.createElement("p");
+myLibrary.forEach(item => addCard(item));
 
-        title.textContent = item.name;
-        author.textContent = item.author;
-        pages.textContent = item.pages;
-        read.textContent = item.read;
+function addCard(item) {
+    let card = document.createElement("div");
+    card.classList.add("card"); 
+        
+    let togBtn = document.createElement("button");
+    togBtn.textContent = "Complete?";
+    togBtn.classList.add("switch");
 
-        card.appendChild(title);
-        card.appendChild(author);
-        card.appendChild(pages);
-        card.appendChild(read);
+    let title = document.createElement("p");
+    let author = document.createElement("p");
+    let pages = document.createElement("p");
+    let genre = document.createElement("p");
 
-        tableContainer.appendChild(card);
+    title.textContent = item.name;
+    author.textContent = `By ${item.author}`;
+    pages.textContent = `Pages: ${item.pages}`;
+    genre.textContent = `Genre: ${item.genre}`;
 
-        if (read) {
-            card.classList.toggle("read");
-        }
-    });
+    card.appendChild(title);
+    card.appendChild(author);
+    card.appendChild(pages);
+    card.appendChild(genre);
+    card.appendChild(togBtn);
+
+    tableContainer.appendChild(card);
+
+    if (item.read) {
+        card.classList.toggle("read");
+    }
 }
 
-addCard();
+
+
+
+
+/*
+const readBtn = Array.from(document.querySelectorAll("button"));
+readBtn.forEach(btn => btn.addEventListener("click", togBtngleRead));
+
+function togBtngleRead(e) {
+    console.log("here");
+    e.target.parentNode.classList.togBtngle("read");
+} */
