@@ -1,3 +1,5 @@
+const tableContainer = document.getElementById("table-container");
+
 let myLibrary = [];
 
 function Book(name, author, pages, read) {
@@ -13,3 +15,29 @@ function addBookToLibrary(book) {
 }
 
 addBookToLibrary(mistborn);
+
+function addCard() {
+    myLibrary.forEach(item => {
+        let card = document.createElement("div");
+        card.classList.add("card");
+    
+        let title = document.createElement("p");
+        let author = document.createElement("p");
+        let pages = document.createElement("p");
+        let read = document.createElement("p");
+
+        title.textContent = item.name;
+        author.textContent = item.author;
+        pages.textContent = item.pages;
+        read.textContent = item.read;
+
+        card.appendChild(title);
+        card.appendChild(author);
+        card.appendChild(pages);
+        card.appendChild(read);
+
+        tableContainer.appendChild(card);
+    });
+}
+
+addCard();
