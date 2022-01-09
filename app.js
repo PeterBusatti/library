@@ -37,6 +37,10 @@ function addCard() {
         card.appendChild(read);
 
         tableContainer.appendChild(card);
+
+        if (read) {
+            card.classList.toggle("read");
+        }
     });
 }
 
