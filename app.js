@@ -1,6 +1,19 @@
 const tableContainer = document.getElementById("table-container");
+const userTitle = document.getElementById("title");
+const userAuthor = document.getElementById("author");
+const userPages = document.getElementById("pages");
+const userGenre = document.getElementById("genre");
+const submitBtn = document.getElementById("submit");
 
-let myLibrary = [];
+const myLibrary = [
+    {
+       name: "Mistborn",
+       author: "Brandon Sanderson",
+       pages: "544",
+       genre: "Fantasy",
+       read: true,
+   },
+];
 
 function Book(name, author, pages, genre, read) {
     this.name = name;
@@ -9,69 +22,101 @@ function Book(name, author, pages, genre, read) {
     this.genre = genre
     this.read = read;
 }
- 
-const mistborn = new Book("Mistborn", "Brandon Sanderson", 544, "Fantasy", true);
 
-function addBookToLibrary(book) {
+tableContainer.addEventListener("click", removeItem);
+tableContainer.addEventListener("click", toggleRead);
+
+submitBtn.addEventListener("click", addBookToLibrary);
+
+function addBookToLibrary() {
+    let check = document.getElementById("checkbox").checked;
     
-    myLibrary.push(book);
+    const newBook = new Book(userTitle.value, userAuthor.value, userPages.value,
+            userGenre.value, check);
+    
+    myLibrary.push(newBook);
+    createCard(newBook);
+    resetForm();
 }
 
-addBookToLibrary(mistborn);
-
 function addCards() {
-    myLibrary.forEach(item => {
-        const card = document.createElement("div");
-        card.classList.add("card"); 
+    myLibrary.forEach(item => createCard(item));
+}
 
-        const deleteBtn = document.createElement("button")
-        deleteBtn.textContent = "X";
-        deleteBtn.classList.add("delete", "btn");
-        deleteBtn.setAttribute("id", "delete");
+function createCard(item) {
+    const card = document.createElement("div");
+    card.classList.add("card"); 
 
-        const title = document.createElement("p");
-        title.textContent = item.name;
-        title.style.fontWeight = "bold";
-        title.style.fontSize = "22px";
+    const deleteBtn = document.createElement("button")
+    deleteBtn.textContent = "X";
+    deleteBtn.classList.add("delete", "btn");
+    deleteBtn.setAttribute("id", "delete");
 
-        const author = document.createElement("p");
-        author.textContent = `By ${item.author}`;
+    const title = document.createElement("p");
+    title.textContent = item.name;
+    title.style.fontWeight = "bold";
+    title.style.fontSize = "22px";
 
-        const pages = document.createElement("p");
-        pages.textContent = `Pages: ${item.pages}`;
+    const author = document.createElement("p");
+    author.textContent = `By ${item.author}`;
 
-        const genre = document.createElement("p");
-        genre.textContent = `Genre: ${item.genre}`;        
+    const pages = document.createElement("p");
+    pages.textContent = `Pages: ${item.pages}`;
 
-        const togBtn = document.createElement("button");
-        togBtn.textContent = "Complete?";
-        togBtn.classList.add("btn");
-        togBtn.setAttribute("id", "complete");
+    const genre = document.createElement("p");
+    genre.textContent = `Genre: ${item.genre}`;        
 
-        card.appendChild(deleteBtn);
-        card.appendChild(title);
-        card.appendChild(author);
-        card.appendChild(pages);
-        card.appendChild(genre);
-        card.appendChild(togBtn);
+    const togBtn = document.createElement("button");
+    togBtn.textContent = "Complete?";
+    togBtn.classList.add("btn", "togbtn");
+    togBtn.setAttribute("id", "complete");
 
-        tableContainer.appendChild(card);
+    card.appendChild(deleteBtn);
+    card.appendChild(title);
+    card.appendChild(author);
+    card.appendChild(pages);
+    card.appendChild(genre);
+    card.appendChild(togBtn);
 
-        if (item.read) {
-            card.classList.toggle("read");
+    tableContainer.appendChild(card);
+
+    if (item.read) {
+        card.classList.toggle("read");
+    }
+}
+
+function resetForm () {
+    userTitle.value = "";
+    userAuthor.value = "";
+    userPages.value = "";
+    userGenre.value = "";
+    document.getElementById("checkbox").checked = false;
+}
+
+function removeItem(e) {
+    if (e.target.classList.contains("delete")){
+        if(confirm("Are you sure you want to delete this?")){
+            let card = e.target.parentElement;
+            tableContainer.removeChild(card);
         }
-    });
+    }
+}
+
+function toggleRead(e){
+    if (e.target.classList.contains("togbtn")){
+        e.target.parentNode.classList.toggle("read");
+    }
 }
 
 addCards();
 
 
 
-/*
-const readBtn = Array.from(document.querySelectorAll("button"));
-readBtn.forEach(btn => btn.addEventListener("click", togBtngleRead));
 
-function togBtngleRead(e) {
+/* const readBtn = Array.from(document.querySelectorAll("button"));
+readBtn.forEach(btn => btn.addEventListener("click", togBtn));
+
+function togBtn(e) {
     console.log("here");
-    e.target.parentNode.classList.togBtngle("read");
+    e.target.parentNode.classList.togBtn("read");
 } */
