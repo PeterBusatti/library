@@ -21,10 +21,10 @@ body {
     border: solid black 2px;
     height: 250px;
     width: 250px;
-    font-size: 18px;
+    font-size: 16px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-around;
     background-color: rgb(223, 196, 196);
 }
 
@@ -37,8 +37,13 @@ body {
     background-color: rgb(154, 197, 154);
 }
 
-.switch {
+.btn {
     align-self: flex-end;
     margin-right: 10px;
 }
 
+.delete {
+   font-size: 10px;
+   height: 15px;
+   width: 15px;
+}
