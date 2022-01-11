@@ -25,7 +25,6 @@ function Book(name, author, pages, genre, read) {
 
 tableContainer.addEventListener("click", removeItem);
 tableContainer.addEventListener("click", toggleRead);
-
 submitBtn.addEventListener("click", addBookToLibrary);
 
 function addBookToLibrary() {
@@ -98,6 +97,7 @@ function removeItem(e) {
         if(confirm("Are you sure you want to delete this?")){
             let card = e.target.parentElement;
             tableContainer.removeChild(card);
+            myLibrary.splice(myLibrary.indexOf(this),1)
         }
     }
 }
