@@ -28,14 +28,18 @@ tableContainer.addEventListener("click", toggleRead);
 submitBtn.addEventListener("click", addBookToLibrary);
 
 function addBookToLibrary() {
-    let check = document.getElementById("checkbox").checked;
+    if (userTitle.value == "" || userAuthor.value == "") {
+        alert("Please fill out TITLE and AUTHOR");
+    }
+    else {
+        const newBook = new Book(userTitle.value, userAuthor.value, userPages.value,
+            userGenre.value, document.getElementById("checkbox").checked);
+        
+        myLibrary.push(newBook);
+        createCard(newBook);
+        resetForm();
+    }
     
-    const newBook = new Book(userTitle.value, userAuthor.value, userPages.value,
-            userGenre.value, check);
-    
-    myLibrary.push(newBook);
-    createCard(newBook);
-    resetForm();
 }
 
 function addCards() {
@@ -95,8 +99,7 @@ function resetForm () {
 function removeItem(e) {
     if (e.target.classList.contains("delete")){
         if(confirm("Are you sure you want to delete this?")){
-            let card = e.target.parentElement;
-            tableContainer.removeChild(card);
+            tableContainer.removeChild(e.target.parentElement);
             myLibrary.splice(myLibrary.indexOf(this),1)
         }
     }
