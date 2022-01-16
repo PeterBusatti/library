@@ -7,6 +7,25 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 5px;
+}
+h1 {
+    font-size: 65px;
+}
+#new-book-btn {
+    display: flex;
+    font-size: 50px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: green;
+    color: rgb(247, 241, 214);
+    border: none;
+    justify-content: center;
+    align-items: center;
+}
+#new-book-btn:hover {
+    background-color: rgb(0, 167, 0);
 }
 
 #form-container {
@@ -20,6 +39,9 @@ body {
     background-color: rgb(247, 241, 214); 
 }
 
+.show {
+    display: flex !important;
+}
 #submit, #checkbox {
     align-self: flex-end;
 }
@@ -30,11 +52,10 @@ body {
     gap: 10px;
     justify-content: flex-start;
     width: 1310px;
-    border: solid red 2px;
 }
 
 .card {
-    border: solid black 2px;
+    border: solid black 3px;
     height: 250px;
     width: 250px;
     font-size: 16px;

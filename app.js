@@ -4,6 +4,8 @@ const userAuthor = document.getElementById("author");
 const userPages = document.getElementById("pages");
 const userGenre = document.getElementById("genre");
 const submitBtn = document.getElementById("submit");
+//const formContainer = document.getElementById("form-container");
+const newBookBtn = document.getElementById("new-book-btn");
 
 const myLibrary = [
     {
@@ -26,6 +28,7 @@ function Book(name, author, pages, genre, read) {
 tableContainer.addEventListener("click", removeItem);
 tableContainer.addEventListener("click", toggleRead);
 submitBtn.addEventListener("click", addBookToLibrary);
+newBookBtn.addEventListener("click", toggleForm);
 
 function addBookToLibrary() {
     if (userTitle.value == "" || userAuthor.value == "") {
@@ -109,6 +112,11 @@ function toggleRead(e){
     if (e.target.classList.contains("togbtn")){
         e.target.parentNode.classList.toggle("read");
     }
+}
+
+function toggleForm() {
+    const form = document.getElementById("form-container");
+    form.classList.toggle("show");
 }
 
 addCards();
