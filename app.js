@@ -17,12 +17,22 @@ const myLibrary = [
    },
 ];
 
-function Book(name, author, pages, genre, read) {
+/*function Book(name, author, pages, genre, read) {
     this.name = name;
     this.author = author;
     this.pages = pages;
     this.genre = genre
     this.read = read;
+}*/
+
+class Book {
+    constructor(name, author, pages, genre, read) {
+        this.name = name;
+        this.author = author;
+        this.pages = pages;
+        this.genre = genre
+        this.read = read;
+    }
 }
 
 tableContainer.addEventListener("click", removeItem);
